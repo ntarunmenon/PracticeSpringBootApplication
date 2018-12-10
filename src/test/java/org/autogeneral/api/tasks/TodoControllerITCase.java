@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.equalTo;
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = TasksApplication.class)
-public class TodoControllerITest {
+public class TodoControllerITCase {
 
     @Autowired
     private TestRestTemplate restTemplate;
