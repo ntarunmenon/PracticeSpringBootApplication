@@ -1,6 +1,8 @@
 package org.autogeneral.api.tasks.service;
 
+
 import org.autogeneral.api.tasks.entity.Todo;
+import org.autogeneral.api.tasks.exception.NotFoundException;
 import org.autogeneral.api.tasks.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,12 @@ public class ToDoService {
         return todoRepository.save(todo);
     }
 
-    public Optional<Todo> findTodoById(Long id){
-        return todoRepository.findById(id);
+    public Todo findTodoById(Long id){
+        Optional<Todo> todoOptional =  todoRepository.findById(id);
+        if(todoOptional.isPresent()) {
+            return todoOptional.get();
+        }
+        throw new NotFoundException(id);
     }
 
 

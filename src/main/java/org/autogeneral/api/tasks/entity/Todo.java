@@ -1,5 +1,7 @@
 package org.autogeneral.api.tasks.entity;
 
+import org.autogeneral.api.tasks.controller.request.ToDoItemAddRequest;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +28,11 @@ public class Todo {
     public Todo(@NotNull String text, @NotNull LocalDate createdDate) {
         this.text = text;
         this.createdDate = createdDate;
+    }
+
+    public Todo(ToDoItemAddRequest toDoItemAddRequest) {
+        this.text = toDoItemAddRequest.getText();
+        this.createdDate = LocalDate.now();
     }
 
     public Long getId() {

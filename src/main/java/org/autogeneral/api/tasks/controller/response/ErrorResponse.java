@@ -7,11 +7,11 @@ import io.swagger.annotations.ApiParam;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotFoundErrorResponse {
+public class ErrorResponse {
 
-    private String name = "NotFoundError";
+    private String name;
 
-    private List<NotFoundErrorDetail> details = new ArrayList<>();
+    private List<ErrorDetail> details = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -21,11 +21,11 @@ public class NotFoundErrorResponse {
         this.name = name;
     }
 
-    public List<NotFoundErrorDetail> getDetails() {
+    public List<ErrorDetail> getDetails() {
         return details;
     }
 
-    public void addErrorDetail(NotFoundErrorDetail details) {
-        this.details.add(details);
+    public void addErrorDetail(ErrorDetail detail) {
+        this.details.add(detail);
     }
 }
