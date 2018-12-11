@@ -22,12 +22,12 @@ public class IntegrationTestController {
 
     private RestTemplate restTemplate;
 
-    public IntegrationTestController(RestTemplate restTemplate){
+    public IntegrationTestController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @GetMapping
-    public IntegrationTestResponse triggerIntegration(@RequestParam("url") String url){
+    public IntegrationTestResponse triggerIntegration(@RequestParam("url") String url) {
         IntegrationTestResponse integrationTestResponse = new IntegrationTestResponse();
         List<BalanceTestIntegrationTestResponse> balanceTestIntegrationTestResponses = testValidateBrackets(url);
         integrationTestResponse.setBalanceTestIntegrationTestResponses(balanceTestIntegrationTestResponses);
@@ -41,12 +41,12 @@ public class IntegrationTestController {
         UriComponents uriComponents = UriComponentsBuilder.
                 fromUriString(url)
                 .path("/tasks/validateBrackets")
-                .queryParam("input",testInput)
+                .queryParam("input", testInput)
                 .build().encode();
 
         ResponseEntity<BalanceTestResult> balanceTestResultResponseEntity = restTemplate.getForEntity(uriComponents.toUri(), BalanceTestResult.class);
         BalanceTestIntegrationTestResponse balanceTestIntegrationTestResponse = new
-                BalanceTestIntegrationTestResponse(balanceTestResultResponseEntity.getBody(),true,true);
+                BalanceTestIntegrationTestResponse(balanceTestResultResponseEntity.getBody(), true, true);
         balanceTestIntegrationTestResponses.add(balanceTestIntegrationTestResponse);
 
         return balanceTestIntegrationTestResponses;

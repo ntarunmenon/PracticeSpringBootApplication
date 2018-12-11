@@ -33,8 +33,8 @@ public class TasksController {
                     @ApiResponse(code = 400, message = "Validation Error", response = ToDoValidationError.class)})
     public BalanceTestResult balanceTest(@RequestParam("input")
                                          @Valid
-                                             @Pattern(regexp = "^[\\(\\{\\[\\)\\}\\]]+$",
-                                                     message = "Should contain only following characters {,[,(,},],)") String input) {
+                                         @Pattern(regexp = "^[\\(\\{\\[\\)\\}\\]]+$",
+                                                 message = "Should contain only following characters {,[,(,},],)") String input) {
         return new BalanceTestResult(input, tasksService.isBalanced(input));
     }
 }

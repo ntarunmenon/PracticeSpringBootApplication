@@ -27,7 +27,8 @@ public class Todo {
     @NotNull
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Todo(){ }
+    public Todo() {
+    }
 
     public Todo(@NotNull String text, @NotNull LocalDateTime createdDate) {
         this.text = text;

@@ -13,7 +13,7 @@ public class BalanceTestResult {
         this.balanced = balanced;
     }
 
-    public BalanceTestResult(){
+    public BalanceTestResult() {
 
     }
 

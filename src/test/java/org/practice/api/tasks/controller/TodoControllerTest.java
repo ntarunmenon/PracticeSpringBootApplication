@@ -2,10 +2,10 @@ package org.practice.api.tasks.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.practice.api.tasks.TasksApplication;
-import org.practice.api.tasks.controller.request.ToDoItemAddRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.practice.api.tasks.TasksApplication;
+import org.practice.api.tasks.controller.request.ToDoItemAddRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +42,7 @@ public class TodoControllerTest {
     public void itemNotFound() throws Exception {
         this.mockMvc.perform(get("/todo/1"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.details[0].message",equalTo("Item with 1 not found")));
+                .andExpect(jsonPath("$.details[0].message", equalTo("Item with 1 not found")));
     }
 
     @Test
@@ -55,6 +55,6 @@ public class TodoControllerTest {
                 .contentType(contentType)
                 .content(jsonMapper.writeValueAsString(toDoItemAddRequest)))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.details[0].message",equalTo("Item with 1 not found")));
+                .andExpect(jsonPath("$.details[0].message", equalTo("Item with 1 not found")));
     }
 }

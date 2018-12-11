@@ -1,9 +1,9 @@
 package org.practice.api.tasks.itest;
 
-import org.practice.api.tasks.TasksApplication;
-import org.practice.api.tasks.entity.Todo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.practice.api.tasks.TasksApplication;
+import org.practice.api.tasks.entity.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;

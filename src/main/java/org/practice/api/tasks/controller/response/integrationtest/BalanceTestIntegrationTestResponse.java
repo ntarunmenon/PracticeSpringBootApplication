@@ -9,7 +9,7 @@ public class BalanceTestIntegrationTestResponse {
     private boolean expected;
     private boolean isCorrect;
 
-    public BalanceTestIntegrationTestResponse(BalanceTestResult balanceTestResult,boolean expected,boolean result) {
+    public BalanceTestIntegrationTestResponse(BalanceTestResult balanceTestResult, boolean expected, boolean result) {
         this.input = balanceTestResult.getInput();
         this.isCorrect = balanceTestResult.isBalanced();
         this.expected = expected;

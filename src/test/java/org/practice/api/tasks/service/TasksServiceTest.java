@@ -10,12 +10,12 @@ public class TasksServiceTest {
     private TasksService tasksService = new TasksService();
 
     @Test
-    public void testBalancedString(){
+    public void testBalancedString() {
         assertTrue(tasksService.isBalanced("{{}}"));
     }
 
     @Test
-    public void testUnBalancedString(){
+    public void testUnBalancedString() {
         assertFalse(tasksService.isBalanced("{{}"));
     }
 }

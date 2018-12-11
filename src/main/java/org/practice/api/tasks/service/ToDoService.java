@@ -14,16 +14,17 @@ public class ToDoService {
 
     private TodoRepository todoRepository;
 
-    public ToDoService(TodoRepository todoRepository){
+    public ToDoService(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
     }
-    public Todo saveTodo(Todo todo){
+
+    public Todo saveTodo(Todo todo) {
         return todoRepository.save(todo);
     }
 
-    public Todo findTodoById(Long id){
-        Optional<Todo> todoOptional =  todoRepository.findById(id);
-        if(todoOptional.isPresent()) {
+    public Todo findTodoById(Long id) {
+        Optional<Todo> todoOptional = todoRepository.findById(id);
+        if (todoOptional.isPresent()) {
             return todoOptional.get();
         }
         throw new NotFoundException(id);

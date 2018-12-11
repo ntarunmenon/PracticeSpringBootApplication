@@ -1,9 +1,9 @@
 package org.practice.api.tasks.exception;
 
-public class NotFoundException extends RuntimeException{
+public class NotFoundException extends RuntimeException {
     private Long id;
 
-    public NotFoundException(Long id){
+    public NotFoundException(Long id) {
         this.id = id;
     }
 

@@ -35,7 +35,7 @@ public class TasksService {
                     // Store the top element in b
                     x = s.peek();
                     s.pop();
-                    if (x=='(' || x=='[')
+                    if (x == '(' || x == '[')
                         return false;
                     break;
 
@@ -44,7 +44,7 @@ public class TasksService {
                     // Store the top element in c
                     x = s.peek();
                     s.pop();
-                    if (x =='(' || x == '{')
+                    if (x == '(' || x == '{')
                         return false;
                     break;
             }

@@ -1,6 +1,5 @@
 package org.practice.api.tasks.controller.error;
 
-import org.autogeneral.api.tasks.controller.error.*;
 import org.practice.api.tasks.exception.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class ResponseEntityExceptionHandler extends org.springframework.web.serv
     public final ResponseEntity<ToDoError> handleNotFoundException(NotFoundException ex, WebRequest request) {
         ToDoItemNotFoundError toDoError = new ToDoItemNotFoundError();
         ToDoNotFoundErrorDetail notFoundErrorDetail = new ToDoNotFoundErrorDetail();
-        notFoundErrorDetail.setMessage(MessageFormat.format("Item with {0} not found",ex.getId()));
+        notFoundErrorDetail.setMessage(MessageFormat.format("Item with {0} not found", ex.getId()));
         toDoError.addErrorDetail(notFoundErrorDetail);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(toDoError);
     }
