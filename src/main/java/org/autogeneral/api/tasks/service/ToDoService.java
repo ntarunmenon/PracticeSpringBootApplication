@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
+@SuppressWarnings("unused")
 public class ToDoService {
 
     private TodoRepository todoRepository;

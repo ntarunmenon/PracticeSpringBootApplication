@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@SuppressWarnings("unused")
 public class Todo {
 
     @Id

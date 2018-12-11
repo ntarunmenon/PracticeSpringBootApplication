@@ -1,5 +1,6 @@
-package org.autogeneral.api.tasks;
+package org.autogeneral.api.tasks.itest;
 
+import org.autogeneral.api.tasks.TasksApplication;
 import org.autogeneral.api.tasks.entity.Todo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,7 @@ public class TodoControllerITCase {
         ResponseEntity<Todo> response = restTemplate.getForEntity("/todo/100", Todo.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody().getText(), equalTo("This is a test record with Id 100"));
+        assertThat(response.getBody().isCompleted(), equalTo(false));
     }
 
     @Test

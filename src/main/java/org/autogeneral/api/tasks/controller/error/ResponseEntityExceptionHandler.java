@@ -1,4 +1,4 @@
-package org.autogeneral.api.tasks.controller;
+package org.autogeneral.api.tasks.controller.error;
 
 import org.autogeneral.api.tasks.controller.error.*;
 import org.autogeneral.api.tasks.exception.NotFoundException;

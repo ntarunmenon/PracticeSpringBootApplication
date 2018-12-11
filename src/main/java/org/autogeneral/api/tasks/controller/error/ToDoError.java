@@ -3,13 +3,14 @@ package org.autogeneral.api.tasks.controller.error;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class ToDoError {
 
     private String name;
 
     private List<ErrorDetail> details = new ArrayList<>();
 
-    public ToDoError(String name) {
+    ToDoError(String name) {
         this.name = name;
     }
 

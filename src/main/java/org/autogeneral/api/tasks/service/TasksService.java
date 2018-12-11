@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Stack;
 
 @Service
+@SuppressWarnings("unused")
 public class TasksService {
 
     public boolean isBalanced(String input) {

@@ -1,5 +1,6 @@
 package org.autogeneral.api.tasks.controller.error;
 
+@SuppressWarnings("unused")
 public class ToDoValidationErrorDetail extends ErrorDetail {
 
     private String location;

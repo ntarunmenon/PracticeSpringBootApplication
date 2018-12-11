@@ -1,5 +1,9 @@
 package org.autogeneral.api.tasks.controller;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.autogeneral.api.tasks.controller.error.ToDoItemNotFoundError;
+import org.autogeneral.api.tasks.controller.error.ToDoValidationError;
 import org.autogeneral.api.tasks.controller.response.BalanceTestResult;
 import org.autogeneral.api.tasks.service.TasksService;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +19,7 @@ import javax.validation.constraints.Pattern;
 @RestController
 @RequestMapping("/tasks")
 @Validated
+@SuppressWarnings("unused")
 public class TasksController {
 
     private TasksService tasksService;
@@ -24,6 +29,9 @@ public class TasksController {
     }
 
     @GetMapping("validateBrackets")
+    @ApiResponses(value =
+            {@ApiResponse(code = 404, message = "Notfound Error", response = ToDoItemNotFoundError.class),
+                    @ApiResponse(code = 400, message = "Validation Error", response = ToDoValidationError.class)})
     public BalanceTestResult balanceTest(@RequestParam("input")
                                          @Valid
                                              @Pattern(regexp = "^[\\(\\{\\[\\)\\}\\]]+$",
