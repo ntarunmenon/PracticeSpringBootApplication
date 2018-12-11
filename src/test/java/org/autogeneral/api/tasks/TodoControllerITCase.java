@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -38,7 +39,7 @@ public class TodoControllerITCase {
     @Test
     public void test_createToDo() {
         ResponseEntity<Todo> response = restTemplate.postForEntity("/todo",
-                new Todo("Test todo insert", LocalDate.now()), Todo.class);
+                new Todo("Test todo insert", LocalDateTime.now()), Todo.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(response.getBody().getText(), equalTo("Test todo insert"));
     }

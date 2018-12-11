@@ -1,13 +1,13 @@
 package org.autogeneral.api.tasks.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.autogeneral.api.tasks.controller.request.ToDoItemAddRequest;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -20,19 +20,22 @@ public class Todo {
     @NotNull
     private String text;
 
+    @JsonProperty("isCompleted")
+    private boolean completed = false;
+
     @NotNull
-    private LocalDate createdDate = LocalDate.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Todo(){ }
 
-    public Todo(@NotNull String text, @NotNull LocalDate createdDate) {
+    public Todo(@NotNull String text, @NotNull LocalDateTime createdDate) {
         this.text = text;
-        this.createdDate = createdDate;
+        this.createdAt = createdDate;
     }
 
     public Todo(ToDoItemAddRequest toDoItemAddRequest) {
         this.text = toDoItemAddRequest.getText();
-        this.createdDate = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -51,12 +54,21 @@ public class Todo {
         this.text = text;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     @Override
@@ -64,14 +76,15 @@ public class Todo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Todo todo = (Todo) o;
-        return Objects.equals(id, todo.id) &&
+        return completed == todo.completed &&
+                Objects.equals(id, todo.id) &&
                 Objects.equals(text, todo.text) &&
-                Objects.equals(createdDate, todo.createdDate);
+                Objects.equals(createdAt, todo.createdAt);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, text, createdDate);
+        return Objects.hash(id, text, completed, createdAt);
     }
 }

@@ -1,17 +1,17 @@
-package org.autogeneral.api.tasks.controller.response;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
+package org.autogeneral.api.tasks.controller.error;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ErrorResponse {
+public class ToDoError {
 
     private String name;
 
     private List<ErrorDetail> details = new ArrayList<>();
+
+    public ToDoError(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

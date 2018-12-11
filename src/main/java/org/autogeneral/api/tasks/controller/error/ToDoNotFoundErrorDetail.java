@@ -1,6 +1,6 @@
-package org.autogeneral.api.tasks.controller.response;
+package org.autogeneral.api.tasks.controller.error;
 
-public class NotFoundErrorDetail extends ErrorDetail{
+public class ToDoNotFoundErrorDetail extends ErrorDetail {
     private String message;
 
     public String getMessage() {

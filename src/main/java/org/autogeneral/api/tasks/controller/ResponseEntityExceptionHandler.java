@@ -1,15 +1,18 @@
 package org.autogeneral.api.tasks.controller;
 
-import org.autogeneral.api.tasks.controller.response.NotFoundErrorDetail;
-import org.autogeneral.api.tasks.controller.response.ErrorResponse;
+import org.autogeneral.api.tasks.controller.error.*;
 import org.autogeneral.api.tasks.exception.NotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.text.MessageFormat;
 
 @ControllerAdvice
@@ -17,12 +20,40 @@ import java.text.MessageFormat;
 public class ResponseEntityExceptionHandler extends org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex, WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setName("NotFoundError");
-        NotFoundErrorDetail notFoundErrorDetail = new NotFoundErrorDetail();
+    public final ResponseEntity<ToDoError> handleNotFoundException(NotFoundException ex, WebRequest request) {
+        ToDoItemNotFoundError toDoError = new ToDoItemNotFoundError();
+        ToDoNotFoundErrorDetail notFoundErrorDetail = new ToDoNotFoundErrorDetail();
         notFoundErrorDetail.setMessage(MessageFormat.format("Item with {0} not found",ex.getId()));
-        errorResponse.addErrorDetail(notFoundErrorDetail);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+        toDoError.addErrorDetail(notFoundErrorDetail);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(toDoError);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public final ResponseEntity<ToDoError> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) {
+        ToDoValidationError toDoError = new ToDoValidationError();
+        ex.getConstraintViolations().forEach(constraintViolation -> toDoError.addErrorDetail(createErrorDetail(constraintViolation)));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(toDoError);
+    }
+
+    private ToDoValidationErrorDetail createErrorDetail(ConstraintViolation<?> constraintViolation) {
+        ToDoValidationErrorDetail toDoValidationErrorDetail = new ToDoValidationErrorDetail();
+        toDoValidationErrorDetail.setLocation("params");
+        toDoValidationErrorDetail.setMsg(constraintViolation.getMessage());
+        toDoValidationErrorDetail.setValue(constraintViolation.getInvalidValue().toString());
+        return toDoValidationErrorDetail;
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ToDoValidationError toDoError = new ToDoValidationError();
+
+        ToDoValidationErrorDetail toDoValidationErrorDetail = new ToDoValidationErrorDetail();
+        toDoValidationErrorDetail.setLocation("params");
+        toDoValidationErrorDetail.setMsg(ex.getBindingResult().getFieldError().getDefaultMessage());
+        toDoValidationErrorDetail.setParam(ex.getBindingResult().getFieldError().getField());
+        toDoValidationErrorDetail.setValue(ex.getBindingResult().getFieldError().getRejectedValue().toString());
+        toDoError.addErrorDetail(toDoValidationErrorDetail);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(toDoError);
     }
 }

@@ -1,6 +1,6 @@
-package org.autogeneral.api.tasks.controller.response;
+package org.autogeneral.api.tasks.controller.error;
 
-public class ValidationErrorDetail {
+public class ToDoValidationErrorDetail extends ErrorDetail {
 
     private String location;
     private String param;
