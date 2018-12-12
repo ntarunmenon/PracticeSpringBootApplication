@@ -11,7 +11,7 @@ There are some things which I would have liked to do better which are documented
   - POST /todo
   - PATCH /todo/{id}
   - [GET /status](https://tasks-application-225318.appspot.com/status)
-  - GET /integration-test
+  - [GET /integration-test](https://tasks-application-225318.appspot.com/integrationTest?url=https://tasks-application-225318.appspot.com)
 
 ### Google Cloud Integration
 
