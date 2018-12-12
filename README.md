@@ -2,7 +2,7 @@
 
 Spring boot application integrated with google clould. 
 
-There are some things which I would have liked to do better which are documented in the [wiki](https://github.com/ntarunmenon/PracticeSpringBootApplication/wiki).
+__There are some things which I would have liked to do better which are documented in the [wiki](https://github.com/ntarunmenon/PracticeSpringBootApplication/wiki).__
 
 [Access API Specs Here](https://tasks-application-225318.appspot.com/swagger-ui.html)
 
